@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+import Button from './../Button/Button';
 
 import s from './ImageGallery.module.css';
 
@@ -41,7 +42,11 @@ export default function ImageGallery({ inputValue }) {
           top: document.documentElement.scrollHeight,
           behavior: 'smooth',
         });
-      })
+      });
+  };
+
+  const handleBtnClick = () => {
+    setPage(page => page + 1);
   };
 
   return (
@@ -57,6 +62,7 @@ export default function ImageGallery({ inputValue }) {
           />
         ))}
       </ul>
+      {images.length > 0 && <Button onClick={handleBtnClick} />}
     </div>
   );
 }
