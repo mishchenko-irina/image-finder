@@ -51,6 +51,7 @@ export default function ImageGallery({ inputValue }) {
           <ImageGalleryItem
             key={image.id}
             littlePicture={image.webformatURL}
+            largePicture={image.largeImageURL}
             name={image.tags}
             id={image.id}
           />
