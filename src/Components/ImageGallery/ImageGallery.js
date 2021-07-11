@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 
+import s from './ImageGallery.module.css';
+
 const baseUrl = 'https://pixabay.com/api/';
 const key = '16370030-8b42ef581aeaa0cd943bdfd1a';
 
@@ -43,8 +45,8 @@ export default function ImageGallery({ inputValue }) {
   };
 
   return (
-    <div>
-      <ul>
+    <div className={s.ImageGalleryContainer}>
+      <ul className={s.ImageGallery}>
         {images.map(image => (
           <ImageGalleryItem
             key={image.id}
