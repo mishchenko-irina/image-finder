@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Searchbar from './Searchbar/Searchbar';
+import ImageGallery from './ImageGallery/ImageGallery';
 
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
   return (
     <div>
       <Searchbar onSubmit={handleFormSubmit} />
+      <ImageGallery inputValue={inputValue} />
     </div>
   );
 }
