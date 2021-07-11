@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import propTypes from 'prop-types';
+import s from './Searchbar.module.css';
 
 export default function Searchbar({ onSubmit }) {
   const [inputValue, setInputValue] = useState('');
@@ -21,13 +22,14 @@ export default function Searchbar({ onSubmit }) {
   };
 
   return (
-    <header>
-      <form onSubmit={handleSubmit}>
-        <button type="submit">
-          <span>Search</span>
+    <header className={s.Searchbar}>
+      <form className={s.SearchForm} onSubmit={handleSubmit}>
+        <button className={s.SearchFormButton} type="submit">
+          <span className={s.SearchFormButtonLabel}>Search</span>
         </button>
 
         <input
+          className={s.SearchFormInput}
           type="text"
           placeholder="Search images and photos"
           onChange={handleInput}
