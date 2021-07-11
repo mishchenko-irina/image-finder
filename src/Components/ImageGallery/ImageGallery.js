@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Button from './../Button/Button';
 
@@ -11,6 +13,7 @@ const key = '16370030-8b42ef581aeaa0cd943bdfd1a';
 export default function ImageGallery({ inputValue }) {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (inputValue === '') {
@@ -32,6 +35,7 @@ export default function ImageGallery({ inputValue }) {
   }, [page]);
 
   const fetchImages = (prevImages = [], page = 1) => {
+    setLoader(true);
     fetch(
       `${baseUrl}?q=${inputValue}&page=${page}&key=${key}&image_type=photo&orientation=horizontal&per_page=12`,
     )
@@ -42,7 +46,8 @@ export default function ImageGallery({ inputValue }) {
           top: document.documentElement.scrollHeight,
           behavior: 'smooth',
         });
-      });
+      })
+      .finally(() => setLoader(false));
   };
 
   const handleBtnClick = () => {
@@ -62,6 +67,15 @@ export default function ImageGallery({ inputValue }) {
           />
         ))}
       </ul>
+      {loader && (
+        <Loader
+          type="Puff"
+          color="#3f51b5"
+          height={100}
+          width={100}
+          timeout={3000}
+        />
+      )}
       {images.length > 0 && <Button onClick={handleBtnClick} />}
     </div>
   );
